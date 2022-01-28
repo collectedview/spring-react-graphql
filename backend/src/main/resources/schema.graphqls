@@ -1,0 +1,24 @@
+directive @specifiedBy(url: String!) on SCALAR
+type Author {
+  id: ID
+  firstName: String
+  lastName: String
+  blog: Blog
+}
+
+type Blog {
+  id: ID
+  title: String
+  description: String
+  content: String
+}
+
+type Project {
+  id: ID
+  title: String
+  content: String
+}
+
+type Query {
+  authorById(id: ID): Author
+}
