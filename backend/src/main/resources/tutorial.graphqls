@@ -1,0 +1,17 @@
+type Blog {
+	id: ID!
+	title: String!
+	description: String
+	author: Author
+}
+
+extend type Query {
+	findAllBlogs: [Blog]!
+	countBlogs: Int!
+}
+
+extend type Mutation {
+	createBlog(title: String!, description: String, author: ID!): Blog!
+	updateBlog(id: ID!, title: String, description: String): Blog!
+	deleteBlog(id: ID!): Boolean
+}
