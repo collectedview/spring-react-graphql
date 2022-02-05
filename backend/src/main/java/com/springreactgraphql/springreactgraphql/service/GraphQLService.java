@@ -1,7 +1,11 @@
-package com.springreactgraphql.springreactgraphql;
+package com.springreactgraphql.springreactgraphql.service;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
+import com.springreactgraphql.springreactgraphql.service.datafetchers.AuthorDataFetcher;
+import com.springreactgraphql.springreactgraphql.service.datafetchers.BlogDataFetcher;
+import com.springreactgraphql.springreactgraphql.service.datafetchers.CountryDataFetcher;
+import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -19,11 +23,16 @@ import java.net.URL;
 import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 
 @Component
-public class GraphQLProvider {
-
+public class GraphQLService {
 
     @Autowired
-    GraphQLDataFetchers graphQLDataFetchers;
+    CountryDataFetcher countryDataFetcher;
+
+    @Autowired
+    AuthorDataFetcher authorDataFetcher;
+
+    @Autowired
+    BlogDataFetcher blogDataFetcher;
 
     private GraphQL graphQL;
 
@@ -45,15 +54,21 @@ public class GraphQLProvider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("authorById", graphQLDataFetchers.getBlogByAuthorIdDataFetcher()))
-                .type(newTypeWiring("Author")
-                        .dataFetcher("blog", graphQLDataFetchers.getBlogDataFetcher()))
+                        .dataFetcher("allAuthors", authorDataFetcher))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("allBlogs", blogDataFetcher))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("allCountries", countryDataFetcher))
                 .build();
     }
 
     @Bean
     public GraphQL graphQL() {
         return graphQL;
+    }
+
+    public ExecutionResult executeGraphQL(String query) {
+        return graphQL.execute(query);
     }
 
 }

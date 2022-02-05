@@ -36,10 +36,3 @@ out/
 ### VS Code ###
 .vscode/
 
-### Local Env Files ###
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-

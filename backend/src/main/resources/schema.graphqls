@@ -1,24 +1,29 @@
-directive @specifiedBy(url: String!) on SCALAR
+schema{
+  query: Query
+}
+
+type Query{
+  allAuthors: [Author]
+  allBlogs: [Blog]
+  allCountries: [Country]
+}
+
 type Author {
-  id: ID
-  firstName: String
-  lastName: String
-  blog: Blog
+	id: ID!
+	name: String!
 }
 
 type Blog {
-  id: ID
-  title: String
-  description: String
-  content: String
+	id: ID!
+	title: String!
+	description: String!
+	author: Author
 }
 
-type Project {
-  id: ID
-  title: String
-  content: String
+type Country {
+	id: ID!
+	name: String!
+	address: String!
+	phone: String!
 }
 
-type Query {
-  authorById(id: ID): Author
-}
