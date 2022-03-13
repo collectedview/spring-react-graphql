@@ -3,7 +3,11 @@ import BlogList from "./components/BlogList";
 
 class App extends Component {
   render() {
-    return <BlogList />;
+    return (
+      <React.Fragment>
+        <BlogList />
+      </React.Fragment>
+    );
   }
 }
 
