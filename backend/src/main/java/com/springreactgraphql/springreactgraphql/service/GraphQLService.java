@@ -4,6 +4,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.springreactgraphql.springreactgraphql.service.datafetchers.AuthorDataFetcher;
 import com.springreactgraphql.springreactgraphql.service.datafetchers.BlogDataFetcher;
+import com.springreactgraphql.springreactgraphql.service.datafetchers.BlogByTitleDataFetcher;
 import com.springreactgraphql.springreactgraphql.service.datafetchers.CountryDataFetcher;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
@@ -34,6 +35,9 @@ public class GraphQLService {
     @Autowired
     BlogDataFetcher blogDataFetcher;
 
+    @Autowired
+    BlogByTitleDataFetcher blogByTitleDataFetcher;
+
     private GraphQL graphQL;
 
     @PostConstruct
@@ -59,6 +63,8 @@ public class GraphQLService {
                         .dataFetcher("allBlogs", blogDataFetcher))
                 .type(newTypeWiring("Query")
                         .dataFetcher("allCountries", countryDataFetcher))
+                .type(newTypeWiring("Query")
+                        .dataFetcher("blogByTitle", blogByTitleDataFetcher))
                 .build();
     }
 

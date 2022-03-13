@@ -20,6 +20,7 @@ dependencies {
 	implementation 'com.graphql-java:graphql-java-spring-boot-starter-webmvc:2.0'
 	implementation 'com.graphql-java:graphql-java:17.3'
 	implementation 'com.google.guava:guava:31.0.1-jre'
+	implementation 'org.jetbrains:annotations:20.1.0'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
