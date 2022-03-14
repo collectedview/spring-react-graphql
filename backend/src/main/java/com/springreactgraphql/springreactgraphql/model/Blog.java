@@ -18,14 +18,18 @@ public class Blog implements Serializable{
 
     private String description;
 
+    @Column(unique=true)
+    private Integer views;
+
     @ManyToOne
     @JoinColumn(name = "author_id", nullable = false, updatable = false)
     private Author author;
 
-    public Blog(Long id, String title, String description, Author author) {
+    public Blog(Long id, String title, String description, Integer views, Author author) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.views = views;
         this.author = author;
     }
 
@@ -56,6 +60,14 @@ public class Blog implements Serializable{
         this.description = description;
     }
 
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
     public Author getAuthor() {
         return author;
     }
@@ -66,7 +78,7 @@ public class Blog implements Serializable{
 
     @Override
     public String toString() {
-        return "Blog[id=" + id + ", title=" + title + ", description=" + description + ", author="+author+"]";
+        return "Blog[id=" + id + ", title=" + title + ", description=" + description + ", views=" + views + ", author=" + author + "]";
     }
 
 }

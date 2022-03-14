@@ -9,8 +9,10 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 
+const uri_string = `${process.env.REACT_APP_GRAPHQL_API_URL}`;
+
 const httpLink = createHttpLink({
-  uri: "http://localhost:8080/graphql",
+  uri: uri_string,
 });
 
 const client = new ApolloClient({

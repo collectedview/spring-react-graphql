@@ -5,8 +5,6 @@ import { useQuery, gql } from "@apollo/client";
 const TITLE_QUERY = gql`
   query blogByTitle($title: String!) {
     blogByTitle(title: $title) {
-      id
-      title
       views
     }
   }

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import BlogViewStatistic from "./components/BlogViewStatistic";
+import BlogViewStatistic from "./BlogViewStatistic";
 
 const Blog = (props) => {
   const { blog } = props;

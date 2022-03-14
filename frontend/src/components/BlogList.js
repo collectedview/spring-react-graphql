@@ -6,10 +6,8 @@ import { useQuery, gql } from "@apollo/client";
 const BLOG_QUERY = gql`
   {
     allBlogs {
-      id
       title
       description
-      author
     }
   }
 `;
@@ -18,11 +16,9 @@ const BlogList = () => {
   const { data } = useQuery(BLOG_QUERY);
 
   if (data != null) {
-    let blog_data = [data.allBlogs];
-
     return (
       <>
-        {blog_data.map((blog) => (
+        {data.allBlogs.map((blog) => (
           <Blog key={blog.id} blog={blog} />
         ))}
       </>
